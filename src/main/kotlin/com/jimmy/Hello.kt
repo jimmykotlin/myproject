@@ -1,26 +1,43 @@
 package com.jimmy
 
 fun main() {
-//    println("Hello Kotlin")
-//    Human().hello()
-    val h = Human()
-    h.hello()
-    // Kotlin 沒有 Java 中小寫的資料型態 ex: int, short, double, long, float, char, boolean, byte....
-    // Kotlin 只有物件所定義的資料型態 ex: Int, Short, Double, Long, Float, Char, Boolean, String, Byte....
-    // val (value) ...  value couldn't be changed in the future
-    // var (variable)... value can be changed in the future
-    Byte
-    val age = 19 //val age : Int = 19 --- Kotlin will guess your data type as Int base on the value you gave it
-    // if you change the value of age ex: age = 20 .... it will cause some error
-    var weight = 66.5 //like Java, if you have a decimal... by default, Kotlin will use double data type
-    var weight2 =66.5f
-    val name = "Jimmy"
-    var name2 : String //if you didn't give it a value when you declare a variable...
-                       // you need to declare it's data type
-    name2 = "Jimmy"// then you can give it value later
+//    var s:String = "abcde"
+    var s:String? = "abcde"
+    s = null
+    println(s?.length)
+    println(s?.get(3))
+    println(s?.substring(3))
+
+/*
+    //in very rare situation, Kotlin allow you to force to run it with null
+    // use !! means you want to deal with NullPointerException by yourself
+    println(s!!.length)
+    println(s!!.get(3))
+    println(s!!.substring(3))
+ */
+
+    val h = Human(66.5f, 1.7f)
+    println(h.bmi())
+    val score = 88
+    println(score > 60)
+    val c : Char ='A'
+    println(c.toInt() > 60)
+    /*var age = 19
+    age = 20
+    var weight = 66.5f
+    var name : String
+    name = "Jimmy"*/
 }
 
-class Human{
+class Human(var weight : Float, var height : Float, var name : String = ""){
+    init {
+        println("test $weight")
+    }
+//    constructor(name: String, weight: Float, height: Float) : this(weight, height)
+    fun bmi() : Float {
+        val bmi = weight / (height*height)
+        return bmi
+    }
     fun hello(){
         println("Hello kotlin")
     }
