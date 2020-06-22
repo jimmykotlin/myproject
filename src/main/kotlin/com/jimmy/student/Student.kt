@@ -3,6 +3,61 @@ package com.jimmy.kotlin
 import java.util.*
 
 fun main() {
+//    userInput()
+    val stu = Student("Judy", 60, 99)
+    stu.print()
+    var test = 123
+    println("Test is: $test")
+//    println(stu.highest())
+    println("High score: ${stu.highest()}")
+}
+
+class Student(var name:String?, var english:Int, var math: Int) {
+    fun print() {
+        println("$name\t$english\t$math\t${getAverage()}\t${passOrFailed()}\t${grading()}")
+    }
+
+    /*fun grading() : Char {
+        return when(getAverage()) {
+            in 90..100 -> 'A'
+            in 80..89 -> 'B'
+            in 70..79 -> 'C'
+            in 60..69 -> 'D'
+            else -> 'F'
+        }
+    }*/
+
+    fun grading() = when(getAverage()) {
+            in 90..100 -> 'A'
+            in 80..89 -> 'B'
+            in 70..79 -> 'C'
+            in 60..69 -> 'D'
+            else -> 'F'
+    }
+
+    fun passOrFailed() = if (getAverage() >=60) "PASS" else "FAILED"
+    /*fun getAverage() : Int {
+        return (english+math)/2
+    }*/
+
+    fun getAverage() = (english+math)/2
+
+    fun highest() = if (english > math) {
+        println("english")
+        english
+    } else {
+        println("math")
+        math
+    }
+
+    fun nameCheck() = name?.length
+    }
+
+    /*fun nameCheck(){
+        println(name?.length)
+    }*/
+
+private fun userInput() {
     val scanner = Scanner(System.`in`)
 //    print("Please enter student's name:")
 //    var name = scanner.next()
@@ -11,18 +66,8 @@ fun main() {
     var english = scanner.nextInt()
     print("Please enter student's math score:")
     var math = scanner.nextInt()
-    val stu = Student (name, english, math)
+    val stu = Student(name, english, math)
     stu.print()
     stu.nameCheck()
 }
 
-class Student(var name:String?, var english:Int, var math: Int) {
-    fun print() {
-        println(name + "\t" + english + "\t" + math +
-        "\t" + (english+math)/2)
-    }
-    fun nameCheck(){
-        println(name?.length)
-    }
-
-}
